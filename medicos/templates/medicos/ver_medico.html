@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle Médico</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            width: 650px;
+            background: linear-gradient(135deg, #d32f2f, #b71c1c);
+            color: white;
+            border-radius: 30px;
+            padding: 35px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        .card h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            padding-bottom: 15px;
+        }
+
+        .dato {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding: 12px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        .valor {
+            text-align: right;
+        }
+
+        .acciones {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .btn-volver {
+            display: inline-block;
+            text-decoration: none;
+            background-color: white;
+            color: #b71c1c;
+            padding: 12px 25px;
+            border-radius: 20px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-volver:hover {
+            background-color: #eeeeee;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+
+        <h1>Detalle del Médico</h1>
+
+        <div class="dato">
+            <span class="label">Nombre:</span>
+            <span class="valor">{{ medico.nombre }}</span>
+        </div>
+
+        <div class="dato">
+            <span class="label">Apellido:</span>
+            <span class="valor">{{ medico.apellido }}</span>
+        </div>
+
+        <div class="dato">
+            <span class="label">Especialidad:</span>
+            <span class="valor">{{ medico.get_especialidad_display }}</span>
+        </div>
+
+        <div class="dato">
+            <span class="label">DNI:</span>
+            <span class="valor">{{ medico.dni }}</span>
+        </div>
+
+        <div class="dato">
+            <span class="label">N° Médico:</span>
+            <span class="valor">{{ medico.nro_medico }}</span>
+        </div>
+
+        <div class="dato">
+            <span class="label">Código:</span>
+            <span class="valor">{{ medico.code }}</span>
+        </div>
+
+        <div class="dato">
+            <span class="label">Fecha de Alta:</span>
+            <span class="valor">{{ medico.fecha_de_alta|date:"d/m/Y" }}</span>
+        </div>
+
+        <div class="acciones">
+            <a href="{% url 'listar_medicos' %}" class="btn-volver">
+                ← Volver al listado
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>
