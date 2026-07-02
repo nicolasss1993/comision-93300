@@ -1,110 +1,62 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de Médicos</title>
+{% extends "medicos/index.html" %}
 
+{% block titulo %} <title>Hospital - Medicos</title> {% endblock %}
+
+{% block estilos %}
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
         body {
-            background: #e8f1ff;
-            min-height: 100vh;
-            padding: 40px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        .titulo {
-            text-align: center;
-            color: #0d47a1;
-            margin-bottom: 30px;
-        }
-
-        .card {
-            background-color: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(5px);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        thead {
-            background-color: #1565c0;
+            background-color: #2f3640;
             color: white;
         }
 
-        th,
-        td {
-            padding: 14px;
-            text-align: left;
+        .navbar-custom {
+            background-color: #1e3799;
         }
 
-        tbody tr:nth-child(even) {
-            background-color: #f5f9ff;
+        .nav-link {
+            color: white !important;
         }
 
-        tbody tr:hover {
-            background-color: #d6e8ff;
-            transition: 0.3s;
+        .nav-link:hover {
+            color: #74b9ff !important;
         }
 
-        .btn {
-            text-decoration: none;
-            padding: 8px 12px;
-            border-radius: 6px;
+        .table-custom {
+            background-color: #353b48;
             color: white;
-            font-size: 14px;
-            margin-right: 5px;
-            display: inline-block;
         }
 
-        .btn-editar {
-            background-color: #1976d2;
+        .table thead {
+            background-color: #1e3799;
         }
 
-        .btn-eliminar {
-            background-color: #d32f2f;
-        }
-
-        .btn-editar:hover {
-            background-color: #0d47a1;
-        }
-
-        .btn-eliminar:hover {
-            background-color: #b71c1c;
-        }
-
-        .sin-registros {
-            text-align: center;
-            padding: 20px;
-            color: #666;
+        .table-hover tbody tr:hover {
+            background-color: #40739e;
         }
     </style>
-</head>
-<body>
+{% endblock %}
 
+{% block cartas %} {% endblock %}
+
+{% block contenido %}
     <div class="container">
 
         <h1 class="titulo">Listado de Médicos</h1>
+        <div class="container mt-5">
 
-        <div class="card">
+        <div class="card p-4">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+                <h2 class="fw-bold mb-0">Médicos</h2>
+            <div class="d-flex gap-2">
+                <form class="d-flex" role="search">
+                    <input type="text" name="nombre" class="form-control" placeholder="Buscar por nombre..." value="{{ request.GET.nombre }}">
+                </form>
+            <a href="{% url 'crear_medico' %}" class="btn btn-primary"> + Nuevo Medico</a>
+            </div>
+        </div>
 
-            <table>
+        <div class="table-responsive">
+            <table class="table table-custom table-hover text-center align-middle">
                 <thead>
                     <tr>
                         <th>Nombre</th>
@@ -122,9 +74,9 @@
                         <td>{{ medico.apellido }}</td>
                         <td>{{ medico.get_especialidad_display }}</td>
                         <td>
-                            <a href="{% url 'ver_medico' medico.code %}" class="btn btn-eliminar">Ver</a>
-                            <a href="#" class="btn btn-editar">Editar</a>
-                            <a href="#" class="btn btn-eliminar">Eliminar</a>
+                            <a href="{% url 'ver_medico' medico.code %}" class="btn btn-warning">Ver</a>
+                            <a href="{% url 'editar_medico' medico.code %}" class="btn btn-primary">Editar</a>
+                            <a href="{% url 'consulta_eliminar_medico' medico.code %}" class="btn btn-secondary">Eliminar</a>
                         </td>
                     </tr>
                     {% empty %}
@@ -141,6 +93,4 @@
         </div>
 
     </div>
-
-</body>
-</html>
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends "medicos/index.html" %}
+
+{% block titulo %}
+<title>Detalle Paciente</title>
+{% endblock %}
+
+{% block contenido %}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-7">
+
+            <div class="card shadow border-info">
+
+                <div class="card-header bg-info text-white text-center">
+
+                    <h3>Detalle del Paciente</h3>
+
+                </div>
+
+                <div class="card-body">
+
+                    <table class="table">
+
+                        <tr>
+
+                            <th>Nombre</th>
+
+                            <td>{{ paciente.nombre }}</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>Apellido</th>
+
+                            <td>{{ paciente.apellido }}</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>DNI</th>
+
+                            <td>{{ paciente.dni }}</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>Teléfono</th>
+
+                            <td>{{ paciente.telefono }}</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>Código</th>
+
+                            <td>{{ paciente.code }}</td>
+
+                        </tr>
+
+                    </table>
+
+                    <div class="text-end">
+
+                        <a class="btn btn-warning" href="{% url 'update_pacientes' paciente.code %}">
+
+                            Editar
+
+                        </a>
+
+                        <a class="btn btn-secondary" href="{% url 'listar_pacientes' %}">
+
+                            Volver
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block cartas %}{% endblock %}

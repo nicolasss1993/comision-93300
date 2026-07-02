@@ -1,0 +1,110 @@
+{% extends "medicos/index.html" %}
+
+{% block titulo %}
+<title>Listado de Pacientes</title>
+{% endblock %}
+
+{% block contenido %}
+
+<div class="container py-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h2 class="text-white">Pacientes</h2>
+
+        <a href="{% url 'crear_paciente' %}" class="btn btn-success">
+            + Nuevo Paciente
+        </a>
+
+    </div>
+
+    <form method="GET" class="mb-4">
+
+        <div class="input-group">
+
+            <input
+                type="text"
+                name="nombre"
+                class="form-control"
+                placeholder="Buscar por nombre..."
+                value="{{ request.GET.nombre }}">
+
+            <button class="btn btn-primary">
+                Buscar
+            </button>
+
+        </div>
+
+    </form>
+
+    <div class="card shadow">
+
+        <table class="table table-hover table-striped mb-0">
+
+            <thead class="table-primary">
+
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>DNI</th>
+                    <th>Teléfono</th>
+                    <th width="220">Acciones</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for paciente in lista_pacientes %}
+
+                <tr>
+
+                    <td>{{ paciente.nombre }}</td>
+                    <td>{{ paciente.apellido }}</td>
+                    <td>{{ paciente.dni }}</td>
+                    <td>{{ paciente.telefono }}</td>
+
+                    <td>
+
+                        <a class="btn btn-primary btn-sm"
+                           href="{% url 'detalle_paciente' paciente.code %}">
+                            Ver
+                        </a>
+
+                        <a class="btn btn-warning btn-sm"
+                           href="{% url 'update_pacientes' paciente.code %}">
+                            Editar
+                        </a>
+
+                        <a class="btn btn-danger btn-sm"
+                           href="{% url 'eliminar_paciente' paciente.code %}">
+                            Eliminar
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            {% empty %}
+
+                <tr>
+
+                    <td colspan="5" class="text-center">
+                        No existen pacientes.
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block cartas %}{% endblock %}

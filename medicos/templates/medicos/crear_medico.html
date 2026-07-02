@@ -1,0 +1,112 @@
+{% extends "medicos/index.html" %}
+
+{% block titulo %}
+<title>Crear Médico</title>
+{% endblock %}
+
+{% block contenido %}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-7 col-md-9">
+
+            <div class="card shadow-lg border-0">
+
+                <div class="card-header bg-primary text-white text-center">
+                    <h2 class="mb-0">➕ Registrar Médico</h2>
+                </div>
+
+                <div class="card-body bg-light text-dark">
+
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                {{ form.non_field_errors }}
+                            </div>
+                        {% endif %}
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">
+                                Nombre
+                            </label>
+                            {{ form.nombre }}
+                            <div class="text-danger">
+                                {{ form.nombre.errors }}
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">
+                                Apellido
+                            </label>
+                            {{ form.apellido }}
+                            <div class="text-danger">
+                                {{ form.apellido.errors }}
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">
+                                Especialidad
+                            </label>
+                            {{ form.especialidad }}
+                            <div class="text-danger">
+                                {{ form.especialidad.errors }}
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">
+                                DNI
+                            </label>
+                            {{ form.dni }}
+                            <div class="text-danger">
+                                {{ form.dni.errors }}
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">
+                                Número de Médico
+                            </label>
+                            {{ form.nro_medico }}
+                            <div class="text-danger">
+                                {{ form.nro_medico.errors }}
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+
+                            <a href="{% url 'listar_medicos' %}"
+                               class="btn btn-outline-secondary">
+                                ← Volver
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-success">
+                                💾 Guardar Médico
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block cartas %}
+{% endblock %}
